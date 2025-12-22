@@ -25,5 +25,22 @@ public class GlobalException {
     }
 
 
+    @ExceptionHandler(OrderNotFoundException.class)
+    public ResponseEntity<ErrorResponce> orderNotFoundException(OrderNotFoundException ex,HttpServletRequest httpServletRequest){
+
+        ErrorResponce errorResponce = new ErrorResponce();
+
+        errorResponce.setTimestamp(LocalDateTime.now());
+        errorResponce.setPath(httpServletRequest.getRequestURI());
+        errorResponce.setStatus(HttpStatus.NOT_FOUND.value());
+        errorResponce.setMessage(ex.getMessage());
+
+        return new ResponseEntity<>(errorResponce,HttpStatus.NOT_FOUND);
+    }
+
+
+
+
+
 
 }
