@@ -5,6 +5,9 @@ spring:
     password: Nirvanappa@1999
     driver-class-name: com.mysql.cj.jdbc.Driver
 
+  application:
+    name: user-service
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -12,3 +15,8 @@ spring:
 
 server:
   port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
