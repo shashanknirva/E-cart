@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/user")
+//@RequestMapping("/user")
 public class UserController {
 
 
@@ -34,7 +34,7 @@ public class UserController {
         UserDto userDto = userService.getUserDetail(id);
 
         if(userDto!=null){
-            return ResponseEntity.status(HttpStatus.FOUND).body(userDto);
+            return ResponseEntity.ok(userDto);
         }
         else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("user not found for id"+ id);

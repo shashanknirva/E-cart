@@ -1,5 +1,6 @@
 package com.ecart.order_service.service;
 
+import com.ecart.order_service.FingClient.UserClient;
 import com.ecart.order_service.dto.OrderDto;
 import com.ecart.order_service.dto.UserDto;
 import com.ecart.order_service.entity.Order;
@@ -22,11 +23,18 @@ public class OrderService {
     @Autowired
     RestTemplate restTemplate;
 
+    @Autowired
+    UserClient userClient;
+
     public OrderDto saveOrderDtls(OrderDto orderDto) {
 
         Order order = orderMapper.MapperDtoToEntity(orderDto);
 
-        UserDto userDto = restTemplate.getForObject("http://localhost:8080/user/get/"+order.getUserId(), UserDto.class);
+
+
+//        UserDto userDto = restTemplate.getForObject("http://localhost:8081/user/get/"+order.getUserId(), UserDto.class);
+
+       UserDto userDto = userClient.getUserDtls(order.getUserId());
 
         if(userDto==null){
             throw new RuntimeException("User details not found");

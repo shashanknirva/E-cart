@@ -13,11 +13,11 @@ import java.time.LocalDateTime;
 public class GlobalException {
 
     @ExceptionHandler
-    public ResponseEntity<ErrorResponce> runTimeException(RunTimeException runTimeException, HttpServletRequest httpServletRequest){
+    public ResponseEntity<ErrorResponce> runTimeException(RuntimeException runtimeException, HttpServletRequest httpServletRequest){
 
         ErrorResponce errorResponce = new ErrorResponce();
         errorResponce.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
-        errorResponce.setMessage(runTimeException.getMessage());
+        errorResponce.setMessage(runtimeException.getMessage());
         errorResponce.setPath(httpServletRequest.getRequestURI());
         errorResponce.setTimestamp(LocalDateTime.now());
 
